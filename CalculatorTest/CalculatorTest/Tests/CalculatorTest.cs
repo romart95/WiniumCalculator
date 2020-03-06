@@ -20,16 +20,17 @@
 
             window.ClickClearButton();
             window.EnterNumber(numberDigits);
-            window.ClickSqrtRootButon();
+            window.ClickSqrtRootButton();
             double actualSqrt = window.GetResult();
             double expectedSqrt = Math.Sqrt(initialNumber);
-            Assert.AreEqual(expectedSqrt, actualSqrt, "Incorrect sqrt root");
+            var delta = 0.000001;
+            Assert.AreEqual(expectedSqrt, actualSqrt, delta, "Incorrect sqrt root");
 
             string expectedExpression = window.GetCalculatorExpression();
             string actualExpression = $"√({initialNumber})";
             Assert.AreEqual(expectedExpression, actualExpression, "Incorrect calculator expression");
 
-            window.ClickMultiplyByButon();
+            window.ClickMultiplyByButton();
             window.ClickEqualsButton();
             double actualResult = window.GetResult();
             double expectedResult = initialNumber;

@@ -2,6 +2,7 @@
 {
     using global::CalculatorTest.Services;
     using OpenQA.Selenium.Winium;
+    using System;
     using System.Diagnostics;
 
     public class WinDriver
@@ -22,12 +23,13 @@
         // Close all calculators
         public static void CloseWindows()
         {
-            var processes = Process.GetProcessesByName("Calculator.exe");
+            var processes = Process.GetProcessesByName("Calculator");
             foreach (var proc in processes)
             {
-                proc.CloseMainWindow();
+                proc.Kill();
             }
 
+            driver.Quit();
             driver = null;
         }
     }

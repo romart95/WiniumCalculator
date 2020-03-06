@@ -1,5 +1,6 @@
 namespace CalculatorTest.Windows
 {
+    using System;
     using global::CalculatorTest.Driver;
     using OpenQA.Selenium;
     using OpenQA.Selenium.Winium;
@@ -7,41 +8,12 @@ namespace CalculatorTest.Windows
 
     public class CalculatorWindow
     {
+        private string numButtonId = "num{0}Button";
+
         private void ClickDigit(int digit)
         {
-            switch (digit)
-            {
-                case 0:
-                    ClickZeroButon();
-                    break;
-                case 1:
-                    ClickOneButon();
-                    break;
-                case 2:
-                    ClickTwoButon();
-                    break;
-                case 3:
-                    ClickThreeButon();
-                    break;
-                case 4:
-                    ClickFourButon();
-                    break;
-                case 5:
-                    ClickFiveButon();
-                    break;
-                case 6:
-                    ClickSixButon();
-                    break;
-                case 7:
-                    ClickSevenButon();
-                    break;
-                case 8:
-                    ClickEightButon();
-                    break;
-                case 9:
-                    ClickNineButon();
-                    break;
-            }
+            var id = string.Format(numButtonId, digit);
+            WinDriver.GetDriver().FindElementById(id).Click();
         }
 
         public void EnterNumber(params int[] digits)
@@ -51,63 +23,12 @@ namespace CalculatorTest.Windows
                 ClickDigit(dig);
             }
         }
-
-        public void ClickZeroButon()
-        {
-            WinDriver.GetDriver().FindElementByName("0").Click();
-        }
-
-        public void ClickOneButon()
-        {
-            WinDriver.GetDriver().FindElementByName("One").Click();
-        }
-
-        public void ClickTwoButon()
-        {
-            WinDriver.GetDriver().FindElementByName("Two").Click();
-        }
-
-        public void ClickThreeButon()
-        {
-            WinDriver.GetDriver().FindElementByName("Three").Click();
-        }
-
-        public void ClickFourButon()
-        {
-            WinDriver.GetDriver().FindElementByName("Four").Click();
-        }
-
-        public void ClickFiveButon()
-        {
-            WinDriver.GetDriver().FindElementByName("Five").Click();
-        }
-
-        public void ClickSixButon()
-        {
-            WinDriver.GetDriver().FindElementByName("Six").Click();
-        }
-
-        public void ClickSevenButon()
-        {
-            WinDriver.GetDriver().FindElementByName("Seven").Click();
-        }
-
-        public void ClickEightButon()
-        {
-            WinDriver.GetDriver().FindElementByName("Eight").Click();
-        }
-
-        public void ClickNineButon()
-        {
-            WinDriver.GetDriver().FindElementByName("Nine").Click();
-        }
-
-        public void ClickSqrtRootButon()
+        public void ClickSqrtRootButton()
         {
             WinDriver.GetDriver().FindElementByName("Square root").Click();
         }
 
-        public void ClickMultiplyByButon()
+        public void ClickMultiplyByButton()
         {
             WinDriver.GetDriver().FindElementByName("Multiply by").Click();
         }
@@ -129,7 +50,7 @@ namespace CalculatorTest.Windows
 
         public double GetResult()
         {
-            return WinDriver.GetDriver().FindElementById("CalculatorResults").GetAttribute("Name").Replace("Display is ", string.Empty);
+            return double.Parse(WinDriver.GetDriver().FindElementById("CalculatorResults").GetAttribute("Name").Replace("Display is ", string.Empty));
         }
     }
 }
