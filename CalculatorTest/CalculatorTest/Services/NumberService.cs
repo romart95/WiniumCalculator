@@ -5,11 +5,12 @@ namespace CalculatorTest.Services
 {
     public static class NumberService
     {
-        private static readonly Random random;
+        private static Random random;
 
         private static Random GetRandom()
         {
-            return random ?? new Random((int)DateTime.Now.Ticks);
+            random = random ?? new Random((int)DateTime.Now.Ticks);
+            return random;
         }
 
         public static int GetRandomInt(int max)

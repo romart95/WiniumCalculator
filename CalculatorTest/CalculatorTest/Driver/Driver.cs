@@ -13,7 +13,8 @@
         {
             if (driver == null)
             {
-                string driverPath = $@"{ApplicationService.GetProjectPath()}\CalculatorTest\Driver";
+                string driverPath = $"{ApplicationService.GetProjectPath()}\\CalculatorTest\\Driver";
+                Console.WriteLine(driverPath);
                 driver = new WiniumDriver(driverPath, ApplicationService.GetDesktopOptions());
             }
 
@@ -29,7 +30,7 @@
                 proc.Kill();
             }
 
-            driver.Quit();
+           // driver.Quit();
             driver = null;
         }
     }
